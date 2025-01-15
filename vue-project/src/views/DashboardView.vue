@@ -18,49 +18,21 @@
       </li>
     </ul>
 
-    <div v-if="isAddDialogOpen" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div class="bg-white p-6 rounded shadow-lg w-1/2">
-        <h2 class="text-xl font-semibold mb-4">Add Article</h2>
-        <form @submit.prevent="handleSubmit" class="mb-6">
-          <input v-model="newArticle.Title" placeholder="Title" required class="border p-2 mb-2 w-full" />
-          <input v-model="newArticle.Image" placeholder="Image URL" required class="border p-2 mb-2 w-full" />
-          <input v-model="newArticle.Link" placeholder="Link" required class="border p-2 mb-2 w-full" />
-          <input v-model="newArticle.Date" type="date" required class="border p-2 mb-2 w-full" />
-          <textarea v-model="newArticle.Content" placeholder="Content" required class="border p-2 mb-2 w-full"></textarea>
-          <select v-model="newArticle.Status" required class="border p-2 mb-2 w-full">
-            <option value="For Edit">For Edit</option>
-            <option value="Published">Published</option>
-          </select>
-          <!-- <input v-model="newArticle.Writer" placeholder="Writer ID" required class="border p-2 mb-2 w-full" /> -->
-          <!-- <input v-model="newArticle.Editor" placeholder="Editor ID" required class="border p-2 mb-2 w-full" /> -->
-          <input v-model="newArticle.Company" placeholder="Company ID" required class="border p-2 mb-2 w-full" />
-          <button type="submit" class="bg-blue-500 text-white p-2 rounded">Add Article</button>
-          <button @click="closeAddDialog" type="button" class="bg-gray-500 text-white p-2 rounded ml-2">Cancel</button>
-        </form>
-      </div>
-    </div>
+    <ArticleForm
+      :isOpen="isAddDialogOpen"
+      :isEdit="false"
+      :article="newArticle"
+      @submit="handleAddSubmit"
+      @close="closeAddDialog"
+    />
 
-    <div v-if="isEditDialogOpen" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div class="bg-white p-6 rounded shadow-lg w-1/2">
-        <h2 class="text-xl font-semibold mb-4">Edit Article</h2>
-        <form @submit.prevent="handleEditSubmit" class="mb-6">
-          <input v-model="editArticleData.Title" placeholder="Title" required class="border p-2 mb-2 w-full" />
-          <input v-model="editArticleData.Image" placeholder="Image URL" required class="border p-2 mb-2 w-full" />
-          <input v-model="editArticleData.Link" placeholder="Link" required class="border p-2 mb-2 w-full" />
-          <input v-model="editArticleData.Date" type="date" required class="border p-2 mb-2 w-full" />
-          <textarea v-model="editArticleData.Content" placeholder="Content" required class="border p-2 mb-2 w-full"></textarea>
-          <select v-model="editArticleData.Status" required class="border p-2 mb-2 w-full">
-            <option value="For Edit">For Edit</option>
-            <option value="Published">Published</option>
-          </select>
-          <!-- <input v-model="editArticleData.Writer" placeholder="Writer ID" required class="border p-2 mb-2 w-full" /> -->
-          <!-- <input v-model="editArticleData.Editor" placeholder="Editor ID" required class="border p-2 mb-2 w-full" /> -->
-          <input v-model="editArticleData.Company" placeholder="Company ID" required class="border p-2 mb-2 w-full" />
-          <button type="submit" class="bg-blue-500 text-white p-2 rounded">Save Changes</button>
-          <button @click="closeEditDialog" type="button" class="bg-gray-500 text-white p-2 rounded ml-2">Cancel</button>
-        </form>
-      </div>
-    </div>
+    <ArticleForm
+      :isOpen="isEditDialogOpen"
+      :isEdit="true"
+      :article="editArticleData"
+      @submit="handleEditSubmit"
+      @close="closeEditDialog"
+    />
   </div>
 </template>
 
@@ -68,6 +40,7 @@
 import { ref, computed } from "vue";
 import { useArticleStore } from "@/stores/article";
 import { useAuthStore } from "@/stores/auth";
+import ArticleForm from "@/components/ArticleForm.vue";
 
 const store = useArticleStore();
 const auth = useAuthStore().auth;
@@ -103,21 +76,10 @@ const editArticleData = ref({
   Company: "",
 });
 
-function handleSubmit() {
-  newArticle.value.Writer = auth.id
-  newArticle.value.Editor = auth.editorId
-  store.addArticle({ ...newArticle.value });
-  newArticle.value = {
-    Title: "",
-    Image: "",
-    Link: "",
-    Date: "",
-    Content: "",
-    Status: "For Edit",
-    Writer: "",
-    Editor: "",
-    Company: "",
-  };
+function handleAddSubmit(article) {
+  article.Writer = auth.id
+  article.Editor = auth.editorId
+  store.addArticle(article);
   closeAddDialog();
 }
 
@@ -138,8 +100,8 @@ function closeEditDialog() {
   isEditDialogOpen.value = false;
 }
 
-function handleEditSubmit() {
-  store.editArticle(editArticleData.value.id, { ...editArticleData.value });
+function handleEditSubmit(article) {
+  store.editArticle(article.id, article);
   closeEditDialog();
 }
 
