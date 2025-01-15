@@ -2,6 +2,10 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+## This is the Live URL
+
+https://archintel-dev-exam.netlify.app/
+
 ## Test Credentials
 
 ### For Writer
@@ -14,15 +18,11 @@ Password: test
 Username: Admin
 Password: Admin
 
-## Project Setup
+## Project Setup and running
 
 ```sh
-cd vue-project
+git clone https://github.com/mrchaser24/ArchIntelDevExam.git
+cd ArchIntelDevExam #if not yet in the project
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
