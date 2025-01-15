@@ -30,14 +30,22 @@ export const useArticleStore = defineStore("article", () => {
   function setStatus(id, status) {
     const index = articles.value.findIndex((article) => article.id === id);
     if (index !== -1) {
-      articles.value[index].Status = status;
+      articles.value[index].status = status;
       updateLocalStorage();
     }
   }
 
   function updateLocalStorage() {
-    localStorage.setItem("myData", JSON.stringify({ article: articles.value }));
+    const myData = JSON.parse(localStorage.getItem("myData"));
+    myData.article = articles.value;
+    localStorage.setItem("myData", JSON.stringify(myData));
   }
 
-  return { articles, addArticle, editArticle, deleteArticle, setStatus };
+  return {
+    articles,
+    addArticle,
+    editArticle,
+    deleteArticle,
+    setStatus,
+  };
 });
