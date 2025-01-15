@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="p-3">
     <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
-    <button @click="openAddDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add Article</button>
+    <button @click="openAddDialog" class="bg-green-500 text-white p-2 rounded mb-6">Add Article</button>
 
     <table class="min-w-full bg-white">
       <thead>
@@ -31,9 +31,9 @@
           <td class="py-2 px-4 border-b">{{ article.Status }}</td>
           <td class="py-2 px-4 border-b">{{ getUserCompanyName(article.Editor, 0) }}</td>
           <td class="py-2 px-4 border-b">{{ getUserCompanyName(article.Company, 1) }}</td>
-          <td class="py-2 px-4 border-b">
-            <button @click="openEditDialog(article)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
-            <button @click="remove(article.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          <td class="py-2 px-4 border-b w-40">
+            <button @click="openEditDialog(article)" class="bg-yellow-500 text-white p-2 rounded mr-2 w-16">Edit</button>
+            <button @click="remove(article.id)" class="bg-red-500 text-white p-2 rounded w-16">Delete</button>
           </td>
         </tr>
       </tbody>
