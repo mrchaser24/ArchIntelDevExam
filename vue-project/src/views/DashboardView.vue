@@ -67,7 +67,6 @@ import ArticleForm from "@/components/ArticleForm.vue";
 
 const store = useArticleStore();
 const auth = useAuthStore().auth;
-console.log("HELLO", auth);
 
 const articles = computed(() => {
   return store.articles.filter((article)=> article.Writer == auth.id)
