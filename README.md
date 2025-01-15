@@ -1,4 +1,4 @@
-# vue-project
+# Arch Intel Dev Exam
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -10,12 +10,12 @@ https://archintel-dev-exam.netlify.app/
 
 ### For Writer
 
-Username: test
+Username: test,
 Password: test
 
 ### For Editor
 
-Username: Admin
+Username: Admin,
 Password: Admin
 
 ## Project Setup and running
