@@ -26,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/editor-dashboard',
-      name: 'Dashboard Page',
+      name: 'Editor Dashboard Page',
       component: () => import('../views/EditorDashboardView.vue'),
     },
     // {

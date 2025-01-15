@@ -2,21 +2,44 @@
   <div>
     <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
     <button @click="openAddDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add Article</button>
-    <ul>
-      <li v-for="article in articles" :key="article.id" class="mb-4 p-4 border rounded">
-        <img :src="article.Image" alt="Article Image" class="mb-2 w-full h-60 object-cover">
-        <h2 class="text-xl font-semibold">{{ article.Title }}</h2>
-        <p class="mb-2">{{ article.Content }}</p>
-        <p class="text-gray-600">Link: <a :href="article.Link" target="_blank">{{ article.Link }}</a></p>
-        <p class="text-gray-600">Date: {{ new Date(article.Date).toLocaleDateString() }}</p>
-        <p class="text-gray-600">Status: {{ article.Status }}</p>
-        <p class="text-gray-600">Writer ID: {{ article.Writer }}</p>
-        <p class="text-gray-600">Editor ID: {{ article.Editor }}</p>
-        <p class="text-gray-600">Company ID: {{ article.Company }}</p>
-        <button @click="openEditDialog(article)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
-        <button @click="remove(article.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
-      </li>
-    </ul>
+
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">Image</th>
+          <th class="py-2 px-4 border-b">Title</th>
+          <th class="py-2 px-4 border-b">Content</th>
+          <th class="py-2 px-4 border-b">Link</th>
+          <th class="py-2 px-4 border-b">Date</th>
+          <th class="py-2 px-4 border-b">Status</th>
+          <th class="py-2 px-4 border-b">Writer ID</th>
+          <th class="py-2 px-4 border-b">Editor ID</th>
+          <th class="py-2 px-4 border-b">Company ID</th>
+          <th class="py-2 px-4 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="article in articles" :key="article.id">
+          <td class="py-2 px-4 border-b">
+            <img :src="article.Image" alt="Article Image" class="w-16 h-16 object-cover">
+          </td>
+          <td class="py-2 px-4 border-b">{{ article.Title }}</td>
+          <td class="py-2 px-4 border-b">{{ article.Content }}</td>
+          <td class="py-2 px-4 border-b">
+            <a :href="article.Link" target="_blank">{{ article.Link }}</a>
+          </td>
+          <td class="py-2 px-4 border-b">{{ new Date(article.Date).toLocaleDateString() }}</td>
+          <td class="py-2 px-4 border-b">{{ article.Status }}</td>
+          <td class="py-2 px-4 border-b">{{ article.Writer }}</td>
+          <td class="py-2 px-4 border-b">{{ article.Editor }}</td>
+          <td class="py-2 px-4 border-b">{{ article.Company }}</td>
+          <td class="py-2 px-4 border-b">
+            <button @click="openEditDialog(article)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
+            <button @click="remove(article.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <ArticleForm
       :isOpen="isAddDialogOpen"
@@ -111,16 +134,16 @@ function remove(id) {
 </script>
 
 <style scoped>
-form {
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 20px;
 }
-input,
-textarea,
-select {
-  display: block;
-  margin-bottom: 10px;
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
 }
-button {
-  margin-right: 10px;
+th {
+  background-color: #f4f4f4;
 }
 </style>

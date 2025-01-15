@@ -1,75 +1,60 @@
 <template>
   <div>
     <h1 class="text-2xl font-bold mb-4">Editor Dashboard</h1>
-    <button
-      @click="openAddUserDialog"
-      class="bg-blue-500 text-white p-2 rounded mb-6"
-    >
-      Add User
-    </button>
-    <button
-      @click="openAddCompanyDialog"
-      class="bg-blue-500 text-white p-2 rounded mb-6"
-    >
-      Add Company
-    </button>
+    <button @click="openAddUserDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add User</button>
+    <button @click="openAddCompanyDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add Company</button>
 
     <h2 class="text-xl font-semibold mb-4">Users</h2>
-    <ul>
-      <li
-        v-for="user in allUsers"
-        :key="user.id"
-        class="mb-4 p-4 border rounded"
-      >
-        <p class="text-xl font-semibold">
-          {{ user.Firstname }} {{ user.Lastname }}
-        </p>
-        <p class="text-gray-600">Username: {{ user.username }}</p>
-        <p class="text-gray-600">Type: {{ user.Type }}</p>
-        <p class="text-gray-600">Status: {{ user.Status }}</p>
-        <button
-          @click="openEditUserDialog(user)"
-          class="bg-yellow-500 text-white p-2 rounded mr-2"
-        >
-          Edit
-        </button>
-        <button
-          @click="removeUser(user.id, user.Type)"
-          class="bg-red-500 text-white p-2 rounded"
-        >
-          Delete
-        </button>
-      </li>
-    </ul>
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">First Name</th>
+          <th class="py-2 px-4 border-b">Last Name</th>
+          <th class="py-2 px-4 border-b">Username</th>
+          <th class="py-2 px-4 border-b">Type</th>
+          <th class="py-2 px-4 border-b">Status</th>
+          <th class="py-2 px-4 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in allUsers" :key="user.id">
+          <td class="py-2 px-4 border-b">{{ user.Firstname }}</td>
+          <td class="py-2 px-4 border-b">{{ user.Lastname }}</td>
+          <td class="py-2 px-4 border-b">{{ user.username }}</td>
+          <td class="py-2 px-4 border-b">{{ user.Type }}</td>
+          <td class="py-2 px-4 border-b">{{ user.Status }}</td>
+          <td class="py-2 px-4 border-b">
+            <button @click="openEditUserDialog(user)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
+            <button @click="removeUser(user.id, user.Type)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <h2 class="text-xl font-semibold mb-4">Companies</h2>
-    <ul>
-      <li
-        v-for="company in companies"
-        :key="company.id"
-        class="mb-4 p-4 border rounded"
-      >
-        <img
-          :src="company.logo"
-          alt="Company Logo"
-          class="mb-2 w-full h-60 object-cover"
-        />
-        <p class="text-xl font-semibold">{{ company.name }}</p>
-        <p class="text-gray-600">Status: {{ company.Status }}</p>
-        <button
-          @click="openEditCompanyDialog(company)"
-          class="bg-yellow-500 text-white p-2 rounded mr-2"
-        >
-          Edit
-        </button>
-        <button
-          @click="removeCompany(company.id)"
-          class="bg-red-500 text-white p-2 rounded"
-        >
-          Delete
-        </button>
-      </li>
-    </ul>
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">Logo</th>
+          <th class="py-2 px-4 border-b">Name</th>
+          <th class="py-2 px-4 border-b">Status</th>
+          <th class="py-2 px-4 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="company in companies" :key="company.id">
+          <td class="py-2 px-4 border-b">
+            <img :src="company.logo" alt="Company Logo" class="w-16 h-16 object-cover">
+          </td>
+          <td class="py-2 px-4 border-b">{{ company.name }}</td>
+          <td class="py-2 px-4 border-b">{{ company.Status }}</td>
+          <td class="py-2 px-4 border-b">
+            <button @click="openEditCompanyDialog(company)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
+            <button @click="removeCompany(company.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <UserForm
       :isOpen="isAddUserDialogOpen"
@@ -216,16 +201,16 @@ function removeCompany(id) {
 </script>
 
 <style scoped>
-form {
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 20px;
 }
-input,
-textarea,
-select {
-  display: block;
-  margin-bottom: 10px;
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
 }
-button {
-  margin-right: 10px;
+th {
+  background-color: #f4f4f4;
 }
 </style>
