@@ -32,14 +32,24 @@ if (!localStorage.getItem('myData')) {
     writerList: [
       {
         id: 0,
-        Firstname: 'testWriter',
-        Lastname: 'testWriter',
+        Firstname: 'testWriter1',
+        Lastname: 'testWriter1',
         editorId: 0,
         Type: 'Writer',
         Status: 'Inactive',
         username: 'test',
         password: 'test'
-      }
+      },
+      {
+        id: 1,
+        Firstname: 'testWriter2',
+        Lastname: 'testWriter2',
+        editorId: 0,
+        Type: 'Writer',
+        Status: 'Inactive',
+        username: 'test2',
+        password: 'test2'
+      },
     ],
     article: [
       {
@@ -55,7 +65,7 @@ if (!localStorage.getItem('myData')) {
         Company: 0,
       },
       {
-        id: 0,
+        id: 1,
         Image: 'https://picsum.photos/13/200',
         Title: 'test title #2',
         Link: 'test.com',
@@ -63,6 +73,18 @@ if (!localStorage.getItem('myData')) {
         Content: 'This should be a very very very long text but let me make it short for a while.',
         Status: 'Published',
         Writer: 0,
+        Editor: 0,
+        Company: 0,
+      },
+      {
+        id: 1,
+        Image: 'https://picsum.photos/14/200',
+        Title: 'test title #3',
+        Link: 'test.com',
+        Date: new Date(),
+        Content: 'This should be a very very very long text but let me make it short for a while.',
+        Status: 'Published',
+        Writer: 1,
         Editor: 0,
         Company: 0,
       },
