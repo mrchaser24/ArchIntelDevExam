@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import router from "@/router";
 
 export const useAuthStore = defineStore("auth", () => {
   const auth = ref(JSON.parse(localStorage.getItem("myData")).auth)
@@ -50,6 +51,7 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   function logout() {
+    router.push('/')
     const data = JSON.parse(localStorage.getItem("myData"));
     const userType = data.auth.Type;
     const userId = data.auth.id;
