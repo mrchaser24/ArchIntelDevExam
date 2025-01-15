@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'Editor Dashboard Page',
       component: () => import('../views/EditorDashboardView.vue'),
     },
+    {
+      path: '/all-media',
+      name: 'All Media Page',
+      component: () => import('../views/AllMedia.vue'),
+    },
     // {
     //   path: '/about',
     //   name: 'about',

@@ -1,12 +1,13 @@
 <template>
-  <div class="flex justify-between h-10 items-center px-5 fixed w-full shadow-sm bg-blue-400 text-white">
+  <div class="flex justify-between h-14 items-center px-5 fixed w-full shadow-sm bg-blue-400 text-white">
     <div class="logo-container">
-      <RouterLink to="/">LOGO PO</RouterLink>
+      <RouterLink to="/">Arch Intel Dev Exam</RouterLink>
     </div>
     <div class="login flex items-center relative" ref="dropdownContainer">
       <div class="login ml-2">
-        <RouterLink v-if="auth.auth.Type == 'Writer'" class="mx-2" to="/dashboard">Dashboard</RouterLink>
-        <RouterLink v-if="auth.auth.Type == 'Editor'" class="mx-2" to="/editor-dashboard">Dashboard</RouterLink>
+        <RouterLink v-if="auth.auth.Type == 'Writer' || auth.auth.Type == 'Editor'" class="mx-2" to="/dashboard">Article Dashboard</RouterLink>
+        <RouterLink v-if="auth.auth.Type == 'Editor'" class="mx-2" to="/editor-dashboard">User Dashboard</RouterLink>
+        <RouterLink v-if="auth.auth.Type == 'Editor'" class="mx-2" to="/all-media">All Media Dashboard</RouterLink>
       </div>
       <div class="login ml-2">
         Hello, <span class="font-bold capitalize">{{ auth.auth.Firstname }}</span>

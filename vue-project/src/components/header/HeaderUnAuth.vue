@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-between h-10 items-center px-5 fixed w-full shadow-sm bg-blue-400 text-white">
+  <div class="flex justify-between h-14 items-center px-5 fixed w-full shadow-sm bg-blue-400 text-white">
     <div class="logo-container">
-      <RouterLink to="/">LOGO PO</RouterLink>
+      <RouterLink to="/">Arch Intel Dev Exam</RouterLink>
     </div>
     <div class="login flex">
       <div class="login ml-2 cursor-pointer">
