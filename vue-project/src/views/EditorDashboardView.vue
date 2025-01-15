@@ -158,65 +158,58 @@ const editCompanyData = ref({
   Status: "Inactive",
 });
 
-function handleAddUserSubmit(user) {
-  user.editorId = auth.id
-  userStore.addUser(user);
-  closeAddUserDialog();
-}
 
-function openAddUserDialog() {
-  isAddUserDialogOpen.value = true;
-}
 
 function closeAddUserDialog() {
   isAddUserDialogOpen.value = false;
 }
-
+function closeEditUserDialog() {
+  isEditUserDialogOpen.value = false;
+}
+function closeAddCompanyDialog() {
+  isAddCompanyDialogOpen.value = false;
+}
+function closeEditCompanyDialog() {
+  isEditCompanyDialogOpen.value = false;
+}
+function openAddUserDialog() {
+  isAddUserDialogOpen.value = true;
+}
 function openEditUserDialog(user) {
   editUserData.value = { ...user };
   isEditUserDialogOpen.value = true;
 }
-
-function closeEditUserDialog() {
-  isEditUserDialogOpen.value = false;
-}
-
-function handleEditUserSubmit(user) {
-  userStore.editUser(user.id, user);
-  closeEditUserDialog();
-}
-
-function removeUser(id, userType) {
-  userStore.deleteUser(id, userType);
-}
-
-function handleAddCompanySubmit(company) {
-  companyStore.addCompany(company);
-  closeAddCompanyDialog();
-}
-
 function openAddCompanyDialog() {
   isAddCompanyDialogOpen.value = true;
 }
-
-function closeAddCompanyDialog() {
-  isAddCompanyDialogOpen.value = false;
-}
-
 function openEditCompanyDialog(company) {
   editCompanyData.value = { ...company };
   isEditCompanyDialogOpen.value = true;
 }
 
-function closeEditCompanyDialog() {
-  isEditCompanyDialogOpen.value = false;
+// USER ACTIONS
+function handleAddUserSubmit(user) {
+  user.editorId = auth.id
+  userStore.addUser(user);
+  closeAddUserDialog();
+}
+function handleEditUserSubmit(user) {
+  userStore.editUser(user.id, user);
+  closeEditUserDialog();
+}
+function removeUser(id, userType) {
+  userStore.deleteUser(id, userType);
 }
 
+// COMPANY ACTIONS
+function handleAddCompanySubmit(company) {
+  companyStore.addCompany(company);
+  closeAddCompanyDialog();
+}
 function handleEditCompanySubmit(company) {
   companyStore.editCompany(company.id, company);
   closeEditCompanyDialog();
 }
-
 function removeCompany(id) {
   companyStore.deleteCompany(id);
 }
