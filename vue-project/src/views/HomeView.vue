@@ -1,9 +1,13 @@
+<template>
+  <div class="flex justify-center items-center pa-5 h-screen">
+    
+  </div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style>
+
+</style>
