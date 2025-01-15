@@ -1,37 +1,49 @@
 <template>
-  <div class="m-auto w-3/4 p-5 rounded-lg shadow-md">
-    <div class="title w-full text-center mb-10">{{ title }}</div>
-    <div class="form">
-      <div class="flex justify-between py-3">
-        <div class="label">First Name</div>
-        <div>
-          <input class="ml-1 shadow w-11/12 px-2 rounded-lg" :class="firstnameHint ? 'border border-red-600' : ''" v-model="user.firstname">
-          <div class="text-sm text-red-600 ml-1" v-if="firstnameHint">First name is required!</div>
-        </div>
+  <div class="m-auto w-3/4 p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4 text-center">
+      {{ title }}
+    </h2>
+
+    <form @submit.prevent="register" class="mb-6">
+      <div>
+        <input
+          v-model="user.firstname"
+          placeholder="First Name"
+          class="border p-2 mb-2 w-full rounded-lg"
+          :class="firstnameHint? 'border border-red-600':''"
+        />
+        <div class="text-sm text-red-600 ml-1" v-if="firstnameHint">Firstname is required!</div>
       </div>
-      <div class="flex justify-between py-3">
-        <div class="label">Last Name</div>
-        <div>
-          <input class="ml-1 shadow w-11/12 px-2 rounded-lg" :class="lastnameHint ? 'border border-red-600' : ''" v-model="user.lastname">
-          <div class="text-sm text-red-600 ml-1" v-if="lastnameHint">Last name is required!</div>
-        </div>
+      <div>
+        <input
+          v-model="user.lastname"
+          placeholder="Last Name"
+          class="border p-2 mb-2 w-full rounded-lg"
+          :class="lastnameHint? 'border border-red-600':''"
+        />
+        <div class="text-sm text-red-600 ml-1" v-if="lastnameHint">Lastname is required!</div>
       </div>
-      <div class="flex justify-between py-3">
-        <div class="label">Username</div>
-        <div>
-          <input class="ml-1 shadow w-11/12 px-2 rounded-lg" :class="usernameHint ? 'border border-red-600' : ''" v-model="user.username">
-          <div class="text-sm text-red-600 ml-1" v-if="usernameHint">Username is required!</div>
-        </div>
+      <div>
+        <input
+          v-model="user.username"
+          placeholder="Username"
+          class="border p-2 mb-2 w-full rounded-lg"
+          :class="usernameHint? 'border border-red-600':''"
+        />
+        <div class="text-sm text-red-600 ml-1" v-if="usernameHint">Username is required!</div>
       </div>
-      <div class="flex justify-between py-3">
-        <div class="label">Password</div>
-        <div>
-          <input class="ml-1 shadow w-11/12 px-2 rounded-lg" :class="passwordHint ? 'border border-red-600' : ''" type="password" v-model="user.password">
-          <div class="text-sm text-red-600 ml-1" v-if="passwordHint">Password is required!</div>
-        </div>
+      <div>
+        <input
+          v-model="user.password"
+          placeholder="Password"
+          type="password"
+          class="border p-2 mb-2 w-full rounded-lg"
+          :class="passwordHint? 'border border-red-600':''"
+        />
+        <div class="text-sm text-red-600 ml-1" v-if="passwordHint">Password is required!</div>
       </div>
-      <button class="w-full bg-blue-500 text-white py-2 rounded-lg mt-10" @click="register()">Register</button>
-    </div>
+      <button class="w-full bg-green-500 text-white py-2 rounded-lg mt-5" @click="register()">Register</button>
+    </form>
   </div>
 </template>
 

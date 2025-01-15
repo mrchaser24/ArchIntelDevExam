@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between h-10 items-center px-5 fixed w-full shadow-sm bg-slate-50">
+  <div class="flex justify-between h-10 items-center px-5 fixed w-full shadow-sm bg-blue-400 text-white">
     <div class="logo-container">
       <RouterLink to="/">LOGO PO</RouterLink>
     </div>
@@ -14,7 +14,7 @@
       <div class="profile-img">
         <img class="cursor-pointer rounded-full m-2" src="https://picsum.photos/200" height="30px" width="30px" alt="profile image" @click="showDropdown()">
       </div>
-      <div v-if="showDropDown" class="absolute top-full right-0 bg-white w-32 rounded-lg shadow-lg">
+      <div v-if="showDropDown" class="absolute top-full right-0 bg-white w-32 rounded-lg shadow-lg text-black">
         <div class="p-3 cursor-pointer hover:bg-slate-100 rounded-lg">Edit User</div>
         <div class="p-3 cursor-pointer hover:bg-slate-100 rounded-lg" @click="clickLogout()">Logout</div>
       </div>

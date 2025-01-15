@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="p-3">
     <h1 class="text-2xl font-bold mb-4">Editor Dashboard</h1>
-    <button @click="openAddUserDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add User</button>
-    <button @click="openAddCompanyDialog" class="bg-blue-500 text-white p-2 rounded mb-6">Add Company</button>
+    <button @click="openAddUserDialog" class="bg-green-500 text-white p-2 rounded mb-6 mr-2 w-32">Add User</button>
+    <button @click="openAddCompanyDialog" class="bg-green-500 text-white p-2 rounded mb-6 w-32">Add Company</button>
 
     <h2 class="text-xl font-semibold mb-4">Users</h2>
-    <table class="min-w-full bg-white">
+    <table class="min-w-full bg-white rounded-md">
       <thead>
         <tr>
           <th class="py-2 px-4 border-b">First Name</th>
@@ -23,9 +23,9 @@
           <td class="py-2 px-4 border-b">{{ user.username }}</td>
           <td class="py-2 px-4 border-b">{{ user.Type }}</td>
           <td class="py-2 px-4 border-b">{{ user.Status }}</td>
-          <td class="py-2 px-4 border-b">
-            <button @click="openEditUserDialog(user)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
-            <button @click="removeUser(user.id, user.Type)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          <td class="py-2 px-4 border-b w-40">
+            <button @click="openEditUserDialog(user)" class="bg-yellow-500 text-white p-2 rounded mr-2 w-16">Edit</button>
+            <button @click="removeUser(user.id, user.Type)" class="bg-red-500 text-white p-2 rounded w-16">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -48,9 +48,9 @@
           </td>
           <td class="py-2 px-4 border-b">{{ company.name }}</td>
           <td class="py-2 px-4 border-b">{{ company.Status }}</td>
-          <td class="py-2 px-4 border-b">
-            <button @click="openEditCompanyDialog(company)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
-            <button @click="removeCompany(company.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
+          <td class="py-2 px-4 border-b w-40">
+            <button @click="openEditCompanyDialog(company)" class="bg-yellow-500 text-white p-2 rounded mr-2  w-16">Edit</button>
+            <button @click="removeCompany(company.id)" class="bg-red-500 text-white p-2 rounded  w-16">Delete</button>
           </td>
         </tr>
       </tbody>
