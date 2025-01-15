@@ -12,7 +12,9 @@
           <option value="For Edit">For Edit</option>
           <option value="Published">Published</option>
         </select>
-        <input v-model="articleData.Company" placeholder="Company ID" required class="border p-2 mb-2 w-full" />
+        <select v-model="articleData.Company" required class="border p-2 mb-2 w-full">
+          <option v-for="item in companyList.companyList" :value="item.id">{{ item.name }}</option>
+        </select>
         <button type="submit" class="bg-blue-500 text-white p-2 rounded">{{ isEdit ? 'Save Changes' : 'Add Article' }}</button>
         <button @click="closeDialog" type="button" class="bg-gray-500 text-white p-2 rounded ml-2">Cancel</button>
       </form>
@@ -22,6 +24,9 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useCompanyStore } from '@/stores/company';
+
+const companyList = useCompanyStore()
 
 const props = defineProps({
   isOpen: Boolean,
