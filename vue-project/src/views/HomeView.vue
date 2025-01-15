@@ -15,10 +15,10 @@
         <p class="text-gray-600">{{ article.Date }}</p>
         <p class="mt-2">{{ article.Content }}</p>
         <div @click="articleLinkJump(article.Link)" target="_blank" class="text-blue-500 hover:underline">Read more</div>
-        <div class="action flex w-full justify-between items-center" v-if="auth.auth && auth.auth.Type == 'Writer'">
+        <!-- <div class="action flex w-full justify-between items-center" v-if="auth.auth && auth.auth.Type == 'Writer'">
           <p class="mt-2 font-bold">Status: {{ article.Status }}</p>
           <button class="bg-blue-500 text-white px-3 py-1  rounded-md mt-1">Edit</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -36,14 +36,7 @@ function articleLinkJump(val) {
   window.open(`https://${val}`, '_blank')
 }
 
-const filteredArticles = computed(() => {
-  if (!auth.auth) {
-    return articles.articles.filter(item => item.Status == 'Published');
-  } else if (auth.auth.Type === 'Writer') {
-    return articles.articles.filter(item => item.Status == 'Published' || item.Status == 'For Edit');
-  }
-  return articles.articles;
-});
+const filteredArticles = computed(() => articles.articles.filter(item => item.Status == 'Published'));
 </script>
 
 <style>
