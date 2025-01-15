@@ -12,9 +12,8 @@
           <th class="py-2 px-4 border-b">Link</th>
           <th class="py-2 px-4 border-b">Date</th>
           <th class="py-2 px-4 border-b">Status</th>
-          <th class="py-2 px-4 border-b">Writer ID</th>
-          <th class="py-2 px-4 border-b">Editor ID</th>
-          <th class="py-2 px-4 border-b">Company ID</th>
+          <th class="py-2 px-4 border-b">Editor</th>
+          <th class="py-2 px-4 border-b">Company</th>
           <th class="py-2 px-4 border-b">Actions</th>
         </tr>
       </thead>
@@ -30,9 +29,8 @@
           </td>
           <td class="py-2 px-4 border-b">{{ new Date(article.Date).toLocaleDateString() }}</td>
           <td class="py-2 px-4 border-b">{{ article.Status }}</td>
-          <td class="py-2 px-4 border-b">{{ article.Writer }}</td>
-          <td class="py-2 px-4 border-b">{{ article.Editor }}</td>
-          <td class="py-2 px-4 border-b">{{ article.Company }}</td>
+          <td class="py-2 px-4 border-b">{{ getUserCompanyName(article.Editor, 0) }}</td>
+          <td class="py-2 px-4 border-b">{{ getUserCompanyName(article.Company, 1) }}</td>
           <td class="py-2 px-4 border-b">
             <button @click="openEditDialog(article)" class="bg-yellow-500 text-white p-2 rounded mr-2">Edit</button>
             <button @click="remove(article.id)" class="bg-red-500 text-white p-2 rounded">Delete</button>
@@ -64,9 +62,13 @@ import { ref, computed } from "vue";
 import { useArticleStore } from "@/stores/article";
 import { useAuthStore } from "@/stores/auth";
 import ArticleForm from "@/components/ArticleForm.vue";
+import { useUserStore } from '@/stores/user';
+import { useCompanyStore } from '@/stores/company';
 
 const store = useArticleStore();
 const auth = useAuthStore().auth;
+const editorList = useUserStore()
+const companyList = useCompanyStore()
 
 const articles = computed(() => {
   return store.articles.filter((article)=> article.Writer == auth.id)
@@ -98,37 +100,40 @@ const editArticleData = ref({
   Company: "",
 });
 
+
+function openAddDialog() {
+  isAddDialogOpen.value = true;
+}
+function closeAddDialog() {
+  isAddDialogOpen.value = false;
+}
+function openEditDialog(article) {
+  editArticleData.value = { ...article };
+  isEditDialogOpen.value = true;
+}
+function closeEditDialog() {
+  isEditDialogOpen.value = false;
+}
+
 function handleAddSubmit(article) {
   article.Writer = auth.id
   article.Editor = auth.editorId
   store.addArticle(article);
   closeAddDialog();
 }
-
-function openAddDialog() {
-  isAddDialogOpen.value = true;
-}
-
-function closeAddDialog() {
-  isAddDialogOpen.value = false;
-}
-
-function openEditDialog(article) {
-  editArticleData.value = { ...article };
-  isEditDialogOpen.value = true;
-}
-
-function closeEditDialog() {
-  isEditDialogOpen.value = false;
-}
-
 function handleEditSubmit(article) {
   store.editArticle(article.id, article);
   closeEditDialog();
 }
-
 function remove(id) {
   store.deleteArticle(id);
+}
+function getUserCompanyName(val, type) {
+  let getUser = editorList.editorList.find(user => user.id == val)
+  let getCompany = companyList.companyList.find(user => user.id == val)
+  
+  if (type == 0) return getUser.Firstname
+  if (type == 1) return getCompany.name
 }
 </script>
 
