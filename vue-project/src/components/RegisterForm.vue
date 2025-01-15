@@ -66,8 +66,14 @@ function register() {
   if (!user.value.lastname) return lastnameHint.value = true
   if (!user.value.username) return usernameHint.value = true
   if (!user.value.password) return passwordHint.value = true
-  auth.register(user.value.firstname, user.value.lastname, user.value.username, user.value.password, props.userType)
   router.push('/')
+  auth.register(user.value.firstname, user.value.lastname, user.value.username, user.value.password, props.userType)
+  user.value = {
+    firstname: '',
+    lastname: '',
+    username: '',
+    password: ''
+  }
 }
 </script>
 

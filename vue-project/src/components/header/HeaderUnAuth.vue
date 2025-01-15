@@ -5,7 +5,6 @@
     </div>
     <div class="login flex">
       <div class="login ml-2 cursor-pointer">
-        <RouterLink class="mx-2" to="/">Home</RouterLink>
         <RouterLink class="mx-2" to="/login">Login</RouterLink>
         <RouterLink class="mx-2" to="/register">Register</RouterLink>
       </div>
