@@ -1,9 +1,12 @@
 <template>
   <div class="flex justify-between h-10 items-center px-5 fixed w-full shadow-sm bg-slate-50">
     <div class="logo-container">
-      LOGO PO
+      <RouterLink to="/">LOGO PO</RouterLink>
     </div>
     <div class="login flex items-center relative" ref="dropdownContainer">
+      <div class="login ml-2">
+        <RouterLink class="mx-2" to="/dashboard">Dashboard</RouterLink>
+      </div>
       <div class="login ml-2">
         Hello, <span class="font-bold capitalize">{{ auth.auth.Firstname }}</span>
       </div>
