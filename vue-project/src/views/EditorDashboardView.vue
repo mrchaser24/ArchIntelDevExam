@@ -1,9 +1,13 @@
 <template>
-  <div class="p-3">
-    <h1 class="text-2xl font-bold mb-4">Editor Dashboard</h1>
-    <button @click="openAddUserDialog" class="bg-green-500 text-white p-2 rounded mb-6 mr-2 w-32">Add User</button>
-    <button @click="openAddCompanyDialog" class="bg-green-500 text-white p-2 rounded mb-6 w-32">Add Company</button>
-
+  <div class="p-5">
+    <h1 class="text-2xl font-bold mb-4 mt-10 text-center">Editor Dashboard</h1>
+    <div class="float-end">
+      <button @click="openAddUserDialog" class="bg-green-500 text-white p-2 rounded mb-6 mr-2 w-32">Add User</button>
+      <button @click="openAddCompanyDialog" class="bg-green-500 text-white p-2 rounded mb-6 w-32">Add Company</button>
+    </div>
+    <div>
+      
+    </div>
     <h2 class="text-xl font-semibold mb-4">Users</h2>
     <table class="min-w-full bg-white rounded-md">
       <thead>

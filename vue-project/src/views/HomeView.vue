@@ -1,14 +1,7 @@
 <template>
-  <div class="flex flex-col justify-center items-center pa-5 h-full">
-    <div class="search mt-10">
-      <p class="mt-2">Search</p>
-      <div class="flex justify-between items-center">
-        <input v-model="search" class="h-full p-2 mr-2 shadow rounded-lg">
-        <button class="w-full bg-blue-500 text-white p-2 rounded-lg mt-1">Search</button>
-      </div>
-    </div>
-    <div class="mt-5">
-      <h1 class="text-2xl font-bold mb-4">Articles</h1>
+  <div class="flex flex-col justify-center items-center pa-6 h-full">
+    <div class="mt-10 w-full p-5">
+      <h1 class="text-2xl font-bold mb-4 text-center">Articles</h1>
       <div v-for="article in filteredArticles" :key="article.id" v-if="filteredArticles" class="mb-4 p-4 border rounded shadow">
         <img :src="article.Image" alt="Article Image" class="mb-2 w-full h-60 object-cover">
         <h2 class="text-xl font-semibold">{{ article.Title }}</h2>

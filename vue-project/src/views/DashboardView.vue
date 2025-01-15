@@ -1,7 +1,7 @@
 <template>
-  <div class="p-3">
-    <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
-    <button @click="openAddDialog" class="bg-green-500 text-white p-2 rounded mb-6">Add Article</button>
+  <div class="p-5">
+    <h1 class="text-2xl font-bold mb-4 mt-10 text-center">Dashboard</h1>
+    <button @click="openAddDialog" class="bg-green-500 text-white p-2 rounded mb-6 float-end">Add Article</button>
 
     <table class="min-w-full bg-white">
       <thead>
